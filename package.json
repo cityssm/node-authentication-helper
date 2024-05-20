@@ -31,7 +31,7 @@
     "@types/activedirectory2": "^1.2.6",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.12.4",
-    "eslint-config-cityssm": "^1.6.0"
+    "eslint-config-cityssm": "^2.1.0"
   },
   "dependencies": {
     "@cityssm/ad-web-auth-connector": "^1.1.1",
