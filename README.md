@@ -25,5 +25,5 @@ import { ActiveDirectoryAuthenticator } from '@cityssm/authentication-helper'
 
 const authenticator = new ActiveDirectoryAuthenticator(config)
 
-await authenticator.authenticate('domain\user', 'p@ssw0rd')
+await authenticator.authenticate('domain\\user', 'p@ssw0rd')
 ```
