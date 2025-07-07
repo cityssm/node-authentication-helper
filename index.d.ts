@@ -1,4 +1,4 @@
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js';
-export { ActiveDirectoryAuthenticator, type ActiveDirectoryAuthenticatorConfiguration } from './authenticators/activeDirectoryAuthenticator.js';
-export { ADWebAuthAuthenticator, type ADWebAuthAuthenticatorConfiguration } from './authenticators/adWebAuthAuthenticator.js';
-export { PlainTextAuthenticator, type PlainTextAuthenticatorConfiguration } from './authenticators/plainTextAuthenticator.js';
+export { type ActiveDirectoryAuthenticatorConfiguration, ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
+export { type ADWebAuthAuthenticatorConfiguration, ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
+export { type PlainTextAuthenticatorConfiguration, PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js';

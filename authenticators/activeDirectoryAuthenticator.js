@@ -8,6 +8,7 @@ export class ActiveDirectoryAuthenticator {
         if (userName === '' || password === '') {
             return false;
         }
+        // eslint-disable-next-line promise/avoid-new
         return await new Promise((resolve) => {
             try {
                 this.#activeDirectory.authenticate(userName, password, (error, auth) => {

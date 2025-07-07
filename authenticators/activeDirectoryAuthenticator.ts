@@ -1,6 +1,6 @@
 import ActiveDirectory from 'activedirectory2'
 
-import { type BaseAuthenticator } from './_baseAuthenticator.js'
+import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
 export interface ActiveDirectoryAuthenticatorConfiguration {
   url: string
@@ -21,6 +21,7 @@ export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
       return false
     }
 
+    // eslint-disable-next-line promise/avoid-new
     return await new Promise<boolean>((resolve) => {
       try {
         this.#activeDirectory.authenticate(

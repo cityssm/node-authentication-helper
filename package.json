@@ -1,40 +1,40 @@
 {
   "name": "@cityssm/authentication-helper",
   "version": "0.1.0",
-  "type": "module",
   "description": "Handles the authentication requests for web applications.",
-  "exports": "./index.js",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "scripts": {
-    "test": "mocha",
-    "coverage": "c8 mocha"
-  },
   "keywords": [
     "authentication",
     "active-directory",
     "username",
     "password"
   ],
+  "homepage": "https://github.com/cityssm/node-authentication-helper#readme",
+  "bugs": {
+    "url": "https://github.com/cityssm/node-authentication-helper/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cityssm/node-authentication-helper.git"
   },
-  "author": "The Corporation of the City of Sault Ste. Marie",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cityssm/node-authentication-helper/issues"
-  },
-  "homepage": "https://github.com/cityssm/node-authentication-helper#readme",
-  "devDependencies": {
-    "@types/activedirectory2": "^1.2.6",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.12.4",
-    "eslint-config-cityssm": "^1.6.0"
+  "author": "The Corporation of the City of Sault Ste. Marie",
+  "type": "module",
+  "exports": "./index.js",
+  "scripts": {
+    "coverage": "c8 node --test",
+    "test": "node --test"
   },
   "dependencies": {
     "@cityssm/ad-web-auth-connector": "^1.1.1",
     "activedirectory2": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/activedirectory2": "^1.2.6",
+    "@types/node": "^24.0.10",
+    "eslint-config-cityssm": "^26.0.0",
+    "prettier-config-cityssm": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

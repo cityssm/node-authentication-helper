@@ -1,7 +1,7 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
 /* eslint-disable security/detect-object-injection */
 
-import { type BaseAuthenticator } from './_baseAuthenticator.js'
+import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
 export type PlainTextAuthenticatorConfiguration = Record<string, string>
 
@@ -10,12 +10,12 @@ export type PlainTextAuthenticatorConfiguration = Record<string, string>
  * Never use this in production!!!
  */
 export class PlainTextAuthenticator implements BaseAuthenticator {
-  readonly #users: PlainTextAuthenticatorConfiguration
   readonly #alternativeAuthenticator: BaseAuthenticator | undefined
+  readonly #users: PlainTextAuthenticatorConfiguration
 
   /**
-   * @param {PlainTextAuthenticatorConfiguration} config - User name/password combinations
-   * @param {BaseAuthenticator} alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
+   * @param config - User name/password combinations
+   * @param alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
    */
   constructor(
     config: PlainTextAuthenticatorConfiguration,

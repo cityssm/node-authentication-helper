@@ -1,4 +1,4 @@
-import { type BaseAuthenticator } from './_baseAuthenticator.js';
+import type { BaseAuthenticator } from './_baseAuthenticator.js';
 export interface ActiveDirectoryAuthenticatorConfiguration {
     url: string;
     baseDN: string;

@@ -1,8 +1,9 @@
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 
 import {
-  ADWebAuthAuthenticator,
   ActiveDirectoryAuthenticator,
+  ADWebAuthAuthenticator,
   PlainTextAuthenticator
 } from '../index.js'
 
@@ -15,10 +16,10 @@ import {
   plainTextConfig
 } from './config.js'
 
-describe('ActiveDirectoryAuthenticator', () => {
+await describe('ActiveDirectoryAuthenticator', async () => {
   const authenticator = new ActiveDirectoryAuthenticator(activeDirectoryConfig)
 
-  it('Returns "true" for valid credentials', async () => {
+  await it('Returns "true" for valid credentials', async () => {
     assert.ok(
       await authenticator.authenticate(
         activeDirectoryUserName,
@@ -27,17 +28,17 @@ describe('ActiveDirectoryAuthenticator', () => {
     )
   })
 
-  it('Returns "false" for invalid credentials', async () => {
+  await it('Returns "false" for invalid credentials', async () => {
     assert.ok(
       !(await authenticator.authenticate(activeDirectoryUserNameInvalid, 'x'))
     )
   })
 })
 
-describe('ADWebAuthAuthenticator', () => {
+await describe('ADWebAuthAuthenticator', async () => {
   const authenticator = new ADWebAuthAuthenticator(adWebAuthConfig)
 
-  it('Returns "true" for valid credentials', async () => {
+  await it('Returns "true" for valid credentials', async () => {
     assert.ok(
       await authenticator.authenticate(
         activeDirectoryUserName,
@@ -46,21 +47,21 @@ describe('ADWebAuthAuthenticator', () => {
     )
   })
 
-  it('Returns "false" for invalid credentials', async () => {
+  await it('Returns "false" for invalid credentials', async () => {
     assert.ok(
       !(await authenticator.authenticate(activeDirectoryUserNameInvalid, 'x'))
     )
   })
 })
 
-describe('PlainTextAuthenticator', () => {
-  describe('With Alternative Authenticator', () => {
+await describe('PlainTextAuthenticator', async () => {
+  await describe('With Alternative Authenticator', async () => {
     const authenticator = new PlainTextAuthenticator(
       plainTextConfig,
       new ADWebAuthAuthenticator(adWebAuthConfig)
     )
 
-    it('Returns "true" for valid plain text credentials', async () => {
+    await it('Returns "true" for valid plain text credentials', async () => {
       assert.ok(
         await authenticator.authenticate(
           Object.keys(plainTextConfig)[0],
@@ -69,7 +70,7 @@ describe('PlainTextAuthenticator', () => {
       )
     })
 
-    it('Returns "false" for invalid plain text credentials', async () => {
+    await it('Returns "false" for invalid plain text credentials', async () => {
       assert.ok(
         !(await authenticator.authenticate(
           Object.keys(plainTextConfig)[0],
@@ -78,7 +79,7 @@ describe('PlainTextAuthenticator', () => {
       )
     })
 
-    it('Returns "true" for valid alternative credentials', async () => {
+    await it('Returns "true" for valid alternative credentials', async () => {
       assert.ok(
         await authenticator.authenticate(
           activeDirectoryUserName,
@@ -87,17 +88,17 @@ describe('PlainTextAuthenticator', () => {
       )
     })
 
-    it('Returns "false" for invalid alternative credentials', async () => {
+    await it('Returns "false" for invalid alternative credentials', async () => {
       assert.ok(
         !(await authenticator.authenticate(activeDirectoryUserNameInvalid, 'x'))
       )
     })
   })
 
-  describe('Without Alternative Authenticator', () => {
+  await describe('Without Alternative Authenticator', async () => {
     const authenticator = new PlainTextAuthenticator(plainTextConfig)
 
-    it('Returns "true" for valid credentials', async () => {
+    await it('Returns "true" for valid credentials', async () => {
       assert.ok(
         await authenticator.authenticate(
           Object.keys(plainTextConfig)[0],
@@ -106,7 +107,7 @@ describe('PlainTextAuthenticator', () => {
       )
     })
 
-    it('Returns "false" for invalid credentials', async () => {
+    await it('Returns "false" for invalid credentials', async () => {
       assert.ok(
         !(await authenticator.authenticate(
           Object.keys(plainTextConfig)[0],
