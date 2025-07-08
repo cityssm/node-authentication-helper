@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/authentication-helper",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Handles the authentication requests for web applications.",
   "keywords": [
     "authentication",
