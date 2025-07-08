@@ -1,43 +1,38 @@
-import ActiveDirectory from 'activedirectory2'
+import ActiveDirectoryAuthenticate from '@cityssm/activedirectory-authenticate'
 
 import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
 export interface ActiveDirectoryAuthenticatorConfiguration {
   url: string
+
   baseDN: string
-  username: string
-  password: string
+
+  bindUserDN: string
+  bindUserPassword: string
 }
 
 export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
-  readonly #activeDirectory: ActiveDirectory
+  readonly #activeDirectoryAuthenticator: ActiveDirectoryAuthenticate
 
   constructor(config: ActiveDirectoryAuthenticatorConfiguration) {
-    this.#activeDirectory = new ActiveDirectory(config)
+    this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(
+      {
+        url: config.url
+      },
+      {
+        baseDN: config.baseDN,
+        bindUserDN: config.bindUserDN,
+        bindUserPassword: config.bindUserPassword
+      }
+    )
   }
 
   async authenticate(userName: string, password: string): Promise<boolean> {
-    if (userName === '' || password === '') {
-      return false
-    }
+    const result = await this.#activeDirectoryAuthenticator.authenticate(
+      userName,
+      password
+    )
 
-    // eslint-disable-next-line promise/avoid-new
-    return await new Promise<boolean>((resolve) => {
-      try {
-        this.#activeDirectory.authenticate(
-          userName,
-          password,
-          (error, auth) => {
-            if ((error ?? '') !== '') {
-              resolve(false)
-            }
-
-            resolve((auth ?? false) as boolean)
-          }
-        )
-      } catch {
-        resolve(false)
-      }
-    })
+    return result.success
   }
 }

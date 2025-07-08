@@ -25,11 +25,10 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@cityssm/ad-web-auth-connector": "^1.1.1",
-    "activedirectory2": "^2.2.0"
+    "@cityssm/activedirectory-authenticate": "^1.0.0-beta.0",
+    "@cityssm/ad-web-auth-connector": "^1.1.1"
   },
   "devDependencies": {
-    "@types/activedirectory2": "^1.2.6",
     "@types/node": "^24.0.10",
     "eslint-config-cityssm": "^26.0.0",
     "prettier-config-cityssm": "^1.0.0"

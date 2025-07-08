@@ -1,26 +1,17 @@
-import ActiveDirectory from 'activedirectory2';
+import ActiveDirectoryAuthenticate from '@cityssm/activedirectory-authenticate';
 export class ActiveDirectoryAuthenticator {
-    #activeDirectory;
+    #activeDirectoryAuthenticator;
     constructor(config) {
-        this.#activeDirectory = new ActiveDirectory(config);
+        this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate({
+            url: config.url
+        }, {
+            baseDN: config.baseDN,
+            bindUserDN: config.bindUserDN,
+            bindUserPassword: config.bindUserPassword
+        });
     }
     async authenticate(userName, password) {
-        if (userName === '' || password === '') {
-            return false;
-        }
-        // eslint-disable-next-line promise/avoid-new
-        return await new Promise((resolve) => {
-            try {
-                this.#activeDirectory.authenticate(userName, password, (error, auth) => {
-                    if ((error ?? '') !== '') {
-                        resolve(false);
-                    }
-                    resolve((auth ?? false));
-                });
-            }
-            catch {
-                resolve(false);
-            }
-        });
+        const result = await this.#activeDirectoryAuthenticator.authenticate(userName, password);
+        return result.success;
     }
 }
