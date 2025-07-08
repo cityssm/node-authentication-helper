@@ -29,7 +29,7 @@
     "@cityssm/ad-web-auth-connector": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.0.11",
     "eslint-config-cityssm": "^26.0.0",
     "prettier-config-cityssm": "^1.0.0"
   },
