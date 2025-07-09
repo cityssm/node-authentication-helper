@@ -1,6 +1,6 @@
-export class BaseAuthenticator {
+export abstract class BaseAuthenticator {
   /**
    * Returns true when successfully authenticated.
    */
-  authenticate: (userName: string, password: string) => Promise<boolean>
+  abstract authenticate: (userName: string, password: string) => Promise<boolean>
 }
