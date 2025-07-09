@@ -13,7 +13,7 @@ const authenticateFunction = (userName, password) => userName === 'testUser' && 
 await describe('FunctionAuthenticator', async () => {
     await describe('With an async authenticate function', async () => {
         const authenticator = getAuthenticatorByType('function', {
-            authenticateFunction: asyncAuthenticateFunction
+            authenticate: asyncAuthenticateFunction
         });
         await it('Returns "true" for valid credentials', async () => {
             assert.ok(await authenticator.authenticate('testUser', 'testPassword'));
@@ -24,7 +24,7 @@ await describe('FunctionAuthenticator', async () => {
     });
     await describe('With a synchronous authenticate function', async () => {
         const authenticator = new FunctionAuthenticator({
-            authenticateFunction
+            authenticate: authenticateFunction
         });
         await it('Returns "true" for valid credentials', async () => {
             assert.ok(await authenticator.authenticate('testUser', 'testPassword'));
