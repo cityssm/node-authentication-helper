@@ -25,6 +25,8 @@
     "./activeDirectoryAuthenticator.js": "./authenticators/activeDirectoryAuthenticator.js",
     "./adWebAuthAuthenticator": "./authenticators/adWebAuthAuthenticator.js",
     "./adWebAuthAuthenticator.js": "./authenticators/adWebAuthAuthenticator.js",
+    "./functionAuthenticator": "./authenticators/functionAuthenticator.js",
+    "./functionAuthenticator.js": "./authenticators/functionAuthenticator.js",
     "./plainTextAuthenticator": "./authenticators/plainTextAuthenticator.js",
     "./plainTextAuthenticator.js": "./authenticators/plainTextAuthenticator.js"
   },
