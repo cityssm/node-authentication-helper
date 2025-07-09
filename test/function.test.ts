@@ -2,6 +2,7 @@ import assert from 'node:assert'
 import { describe, it } from 'node:test'
 
 import { FunctionAuthenticator } from '../authenticators/functionAuthenticator.js'
+import { getAuthenticatorByType } from '../index.js'
 
 const asyncAuthenticateFunction = async (
   userName: string,
@@ -19,7 +20,7 @@ const authenticateFunction = (userName: string, password: string): boolean =>
 
 await describe('FunctionAuthenticator', async () => {
   await describe('With an async authenticate function', async () => {
-    const authenticator = new FunctionAuthenticator({
+    const authenticator = getAuthenticatorByType('function', {
       authenticateFunction: asyncAuthenticateFunction
     })
 
