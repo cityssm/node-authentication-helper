@@ -1,88 +1,42 @@
-// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
+import { ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js'
+import { ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js'
+import { FunctionAuthenticator } from './authenticators/functionAuthenticator.js'
+import { PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js'
 
-import type { BaseAuthenticator } from './authenticators/_baseAuthenticator.js'
-import {
-  type ActiveDirectoryAuthenticatorConfiguration,
-  ActiveDirectoryAuthenticator
-} from './authenticators/activeDirectoryAuthenticator.js'
-import {
-  type ADWebAuthAuthenticatorConfiguration,
-  ADWebAuthAuthenticator
-} from './authenticators/adWebAuthAuthenticator.js'
-import {
-  type FunctionAuthenticatorConfiguration,
-  FunctionAuthenticator
-} from './authenticators/functionAuthenticator.js'
-import {
-  type PlainTextAuthenticatorConfiguration,
-  PlainTextAuthenticator
-} from './authenticators/plainTextAuthenticator.js'
+const Authenticators = {
+  activeDirectory: ActiveDirectoryAuthenticator,
+  adWebAuth: ADWebAuthAuthenticator,
+  function: FunctionAuthenticator,
+  plainText: PlainTextAuthenticator
+} as const
 
-export type AuthenticatorType = 'activeDirectory' | 'adWebAuth' | 'function' | 'plainText'
-
-export function getAuthenticatorByType(
-  authenticatorType: 'activeDirectory',
-  authenticatorConfig: ActiveDirectoryAuthenticatorConfiguration
-): ActiveDirectoryAuthenticator
-
-export function getAuthenticatorByType(
-  authenticatorType: 'adWebAuth',
-  authenticatorConfig: ADWebAuthAuthenticatorConfiguration
-): ADWebAuthAuthenticator
-
-export function getAuthenticatorByType(
-  authenticatorType: 'function',
-  authenticatorConfig: FunctionAuthenticatorConfiguration
-): FunctionAuthenticator
-
-export function getAuthenticatorByType(
-  authenticatorType: 'plainText',
-  authenticatorConfig: PlainTextAuthenticatorConfiguration
-): PlainTextAuthenticator
+export type AuthenticatorType = keyof typeof Authenticators
 
 /**
  * Factory function to create an authenticator based on the specified type.
- * @param authenticatorType - The authenticator to create ('activeDirectory' | 'adWebAuth' | 'plainText')
+ * @param authenticatorType - The authenticator to create ('activeDirectory' | 'adWebAuth' | 'function | 'plainText')
  * @param authenticatorConfig - The configuration for the authenticator
- * @returns A BaseAuthenticator instance based on the specified type
+ * @returns An Authenticator instance based on the specified type
  * @throws Error if the authenticator type is unknown
  */
-export function getAuthenticatorByType(
-  authenticatorType: AuthenticatorType,
-  authenticatorConfig: unknown
-): BaseAuthenticator {
-  switch (authenticatorType) {
-    case 'activeDirectory': {
-      return new ActiveDirectoryAuthenticator(
-        authenticatorConfig as ActiveDirectoryAuthenticatorConfiguration
-      )
-    }
+export function getAuthenticatorByType<
+  T extends keyof typeof Authenticators
+>(
+  authenticatorType: T,
+  authenticatorConfig: ConstructorParameters<(typeof Authenticators)[T]>[0]
+): InstanceType<(typeof Authenticators)[T]> {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+  const Authenticator = Authenticators[authenticatorType] as unknown as
+    | (new (
+        config: ConstructorParameters<(typeof Authenticators)[T]>[0]
+      ) => InstanceType<(typeof Authenticators)[T]>)
+    | undefined
 
-    case 'adWebAuth': {
-      return new ADWebAuthAuthenticator(
-        authenticatorConfig as ADWebAuthAuthenticatorConfiguration
-      )
-    }
-
-    case 'function': {
-      return new FunctionAuthenticator(
-        authenticatorConfig as FunctionAuthenticatorConfiguration
-      )
-    }
-
-    case 'plainText': {
-      return new PlainTextAuthenticator(
-        authenticatorConfig as PlainTextAuthenticatorConfiguration
-      )
-    }
-
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-    default: {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new Error(`Unknown authenticator type: ${authenticatorType}`)
-    }
+  if (Authenticator === undefined) {
+    throw new Error(`Unknown authenticator type: ${authenticatorType}`)
   }
+
+  return new Authenticator(authenticatorConfig)
 }
 
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js'
