@@ -19,7 +19,7 @@ export type AuthenticatorType = keyof typeof Authenticators
  * @returns An Authenticator instance based on the specified type
  * @throws Error if the authenticator type is unknown
  */
-export function getAuthenticatorByType<
+export function instantiateAuthenticatorByType<
   T extends keyof typeof Authenticators
 >(
   authenticatorType: T,

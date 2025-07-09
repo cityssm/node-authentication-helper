@@ -1,10 +1,10 @@
 import assert from 'node:assert';
 import { describe, it } from 'node:test';
-import { ADWebAuthAuthenticator, PlainTextAuthenticator } from '../index.js';
+import { ADWebAuthAuthenticator, instantiateAuthenticatorByType, PlainTextAuthenticator } from '../index.js';
 import { activeDirectoryPassword, activeDirectoryUserName, activeDirectoryUserNameInvalid, adWebAuthConfig, plainTextUsers } from './config.js';
 await describe('PlainTextAuthenticator', async () => {
     await describe('With Alternative Authenticator', async () => {
-        const authenticator = new PlainTextAuthenticator({
+        const authenticator = instantiateAuthenticatorByType('plainText', {
             alternativeAuthenticator: new ADWebAuthAuthenticator(adWebAuthConfig),
             users: plainTextUsers
         });

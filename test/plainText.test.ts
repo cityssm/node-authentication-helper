@@ -3,6 +3,7 @@ import { describe, it } from 'node:test'
 
 import {
   ADWebAuthAuthenticator,
+  instantiateAuthenticatorByType,
   PlainTextAuthenticator
 } from '../index.js'
 
@@ -16,7 +17,7 @@ import {
 
 await describe('PlainTextAuthenticator', async () => {
   await describe('With Alternative Authenticator', async () => {
-    const authenticator = new PlainTextAuthenticator({
+    const authenticator = instantiateAuthenticatorByType('plainText', {
       alternativeAuthenticator: new ADWebAuthAuthenticator(adWebAuthConfig),
       users: plainTextUsers
     })

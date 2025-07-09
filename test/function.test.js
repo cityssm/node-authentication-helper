@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import { describe, it } from 'node:test';
 import { FunctionAuthenticator } from '../authenticators/functionAuthenticator.js';
-import { getAuthenticatorByType } from '../index.js';
+import { instantiateAuthenticatorByType } from '../index.js';
 const asyncAuthenticateFunction = async (userName, password) => 
 // eslint-disable-next-line promise/avoid-new
 await new Promise((resolve) => {
@@ -12,7 +12,7 @@ await new Promise((resolve) => {
 const authenticateFunction = (userName, password) => userName === 'testUser' && password === 'testPassword';
 await describe('FunctionAuthenticator', async () => {
     await describe('With an async authenticate function', async () => {
-        const authenticator = getAuthenticatorByType('function', {
+        const authenticator = instantiateAuthenticatorByType('function', {
             authenticate: asyncAuthenticateFunction
         });
         await it('Returns "true" for valid credentials', async () => {

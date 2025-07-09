@@ -15,7 +15,7 @@ const Authenticators = {
  * @returns An Authenticator instance based on the specified type
  * @throws Error if the authenticator type is unknown
  */
-export function getAuthenticatorByType(authenticatorType, authenticatorConfig) {
+export function instantiateAuthenticatorByType(authenticatorType, authenticatorConfig) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
     const Authenticator = Authenticators[authenticatorType];
     if (Authenticator === undefined) {

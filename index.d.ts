@@ -16,7 +16,7 @@ export type AuthenticatorType = keyof typeof Authenticators;
  * @returns An Authenticator instance based on the specified type
  * @throws Error if the authenticator type is unknown
  */
-export declare function getAuthenticatorByType<T extends keyof typeof Authenticators>(authenticatorType: T, authenticatorConfig: ConstructorParameters<(typeof Authenticators)[T]>[0]): InstanceType<(typeof Authenticators)[T]>;
+export declare function instantiateAuthenticatorByType<T extends keyof typeof Authenticators>(authenticatorType: T, authenticatorConfig: ConstructorParameters<(typeof Authenticators)[T]>[0]): InstanceType<(typeof Authenticators)[T]>;
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js';
 export { type ActiveDirectoryAuthenticatorConfiguration, ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
 export { type ADWebAuthAuthenticatorConfiguration, ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
