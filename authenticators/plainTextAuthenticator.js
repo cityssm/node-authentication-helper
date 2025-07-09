@@ -8,12 +8,13 @@ export class PlainTextAuthenticator {
     #alternativeAuthenticator;
     #users;
     /**
-     * @param config - User name/password combinations
-     * @param alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
+     * @param config - Configuration for the PlainTextAuthenticator
+     * @param config.users - User name/password combinations
+     * @param config.alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
      */
-    constructor(config, alternativeAuthenticator) {
-        this.#users = config;
-        this.#alternativeAuthenticator = alternativeAuthenticator;
+    constructor(config) {
+        this.#users = config.users;
+        this.#alternativeAuthenticator = config.alternativeAuthenticator;
     }
     async authenticate(userName, password) {
         if (Object.hasOwn(this.#users, userName)) {

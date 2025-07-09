@@ -3,7 +3,10 @@
 
 import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
-export type PlainTextAuthenticatorConfiguration = Record<string, string>
+export interface PlainTextAuthenticatorConfiguration {
+  alternativeAuthenticator?: BaseAuthenticator
+  users: Record<string, string>
+}
 
 /**
  * This should only be used when testing, say, inside of a GitHub Action.
@@ -11,18 +14,16 @@ export type PlainTextAuthenticatorConfiguration = Record<string, string>
  */
 export class PlainTextAuthenticator implements BaseAuthenticator {
   readonly #alternativeAuthenticator: BaseAuthenticator | undefined
-  readonly #users: PlainTextAuthenticatorConfiguration
+  readonly #users: Record<string, string>
 
   /**
-   * @param config - User name/password combinations
-   * @param alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
+   * @param config - Configuration for the PlainTextAuthenticator
+   * @param config.users - User name/password combinations
+   * @param config.alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
    */
-  constructor(
-    config: PlainTextAuthenticatorConfiguration,
-    alternativeAuthenticator?: BaseAuthenticator
-  ) {
-    this.#users = config
-    this.#alternativeAuthenticator = alternativeAuthenticator
+  constructor(config: PlainTextAuthenticatorConfiguration) {
+    this.#users = config.users
+    this.#alternativeAuthenticator = config.alternativeAuthenticator
   }
 
   async authenticate(userName: string, password: string): Promise<boolean> {
