@@ -19,7 +19,15 @@
   "license": "MIT",
   "author": "The Corporation of the City of Sault Ste. Marie",
   "type": "module",
-  "exports": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./activeDirectoryAuthenticator": "./authenticators/activeDirectoryAuthenticator.js",
+    "./activeDirectoryAuthenticator.js": "./authenticators/activeDirectoryAuthenticator.js",
+    "./adWebAuthAuthenticator": "./authenticators/adWebAuthAuthenticator.js",
+    "./adWebAuthAuthenticator.js": "./authenticators/adWebAuthAuthenticator.js",
+    "./plainTextAuthenticator": "./authenticators/plainTextAuthenticator.js",
+    "./plainTextAuthenticator.js": "./authenticators/plainTextAuthenticator.js"
+  },
   "scripts": {
     "coverage": "c8 node --test",
     "test": "node --test"
