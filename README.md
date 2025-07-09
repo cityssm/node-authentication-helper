@@ -8,8 +8,9 @@ Standardizes each method to allow for easier switching.
 
 Supports:
 
-- Active Directory
+- [Active Directory](https://github.com/cityssm/node-activedirectory-authenticate)
 - [AD Web Auth](https://github.com/cityssm/ad-web-auth)
+- Function - Implement your own!
 - Plain Text (_for testing purposes only!!!_)
 
 ## Installation
