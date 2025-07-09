@@ -31,7 +31,7 @@
     "./plainTextAuthenticator.js": "./authenticators/plainTextAuthenticator.js"
   },
   "scripts": {
-    "coverage": "c8 node --test",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
     "test": "node --test"
   },
   "dependencies": {
