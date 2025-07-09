@@ -1,11 +1,14 @@
 import { type ActiveDirectoryAuthenticatorConfiguration, ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
 import { type ADWebAuthAuthenticatorConfiguration, ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
+import { type FunctionAuthenticatorConfiguration, FunctionAuthenticator } from './authenticators/functionAuthenticator.js';
 import { type PlainTextAuthenticatorConfiguration, PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js';
-export type AuthenticatorType = 'activeDirectory' | 'adWebAuth' | 'plainText';
+export type AuthenticatorType = 'activeDirectory' | 'adWebAuth' | 'function' | 'plainText';
 export declare function getAuthenticatorByType(authenticatorType: 'activeDirectory', authenticatorConfig: ActiveDirectoryAuthenticatorConfiguration): ActiveDirectoryAuthenticator;
 export declare function getAuthenticatorByType(authenticatorType: 'adWebAuth', authenticatorConfig: ADWebAuthAuthenticatorConfiguration): ADWebAuthAuthenticator;
+export declare function getAuthenticatorByType(authenticatorType: 'function', authenticatorConfig: FunctionAuthenticatorConfiguration): FunctionAuthenticator;
 export declare function getAuthenticatorByType(authenticatorType: 'plainText', authenticatorConfig: PlainTextAuthenticatorConfiguration): PlainTextAuthenticator;
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js';
 export { type ActiveDirectoryAuthenticatorConfiguration, ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
 export { type ADWebAuthAuthenticatorConfiguration, ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
+export { type FunctionAuthenticatorConfiguration, FunctionAuthenticator } from './authenticators/functionAuthenticator.js';
 export { type PlainTextAuthenticatorConfiguration, PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js';

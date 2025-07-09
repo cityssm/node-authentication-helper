@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
 import { ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
 import { ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
+import { FunctionAuthenticator } from './authenticators/functionAuthenticator.js';
 import { PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js';
 /**
  * Factory function to create an authenticator based on the specified type.
@@ -18,6 +19,9 @@ export function getAuthenticatorByType(authenticatorType, authenticatorConfig) {
         case 'adWebAuth': {
             return new ADWebAuthAuthenticator(authenticatorConfig);
         }
+        case 'function': {
+            return new FunctionAuthenticator(authenticatorConfig);
+        }
         case 'plainText': {
             return new PlainTextAuthenticator(authenticatorConfig);
         }
@@ -31,4 +35,5 @@ export function getAuthenticatorByType(authenticatorType, authenticatorConfig) {
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js';
 export { ActiveDirectoryAuthenticator } from './authenticators/activeDirectoryAuthenticator.js';
 export { ADWebAuthAuthenticator } from './authenticators/adWebAuthAuthenticator.js';
+export { FunctionAuthenticator } from './authenticators/functionAuthenticator.js';
 export { PlainTextAuthenticator } from './authenticators/plainTextAuthenticator.js';

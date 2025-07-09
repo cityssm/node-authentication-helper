@@ -11,11 +11,15 @@ import {
   ADWebAuthAuthenticator
 } from './authenticators/adWebAuthAuthenticator.js'
 import {
+  type FunctionAuthenticatorConfiguration,
+  FunctionAuthenticator
+} from './authenticators/functionAuthenticator.js'
+import {
   type PlainTextAuthenticatorConfiguration,
   PlainTextAuthenticator
 } from './authenticators/plainTextAuthenticator.js'
 
-export type AuthenticatorType = 'activeDirectory' | 'adWebAuth' | 'plainText'
+export type AuthenticatorType = 'activeDirectory' | 'adWebAuth' | 'function' | 'plainText'
 
 export function getAuthenticatorByType(
   authenticatorType: 'activeDirectory',
@@ -26,6 +30,11 @@ export function getAuthenticatorByType(
   authenticatorType: 'adWebAuth',
   authenticatorConfig: ADWebAuthAuthenticatorConfiguration
 ): ADWebAuthAuthenticator
+
+export function getAuthenticatorByType(
+  authenticatorType: 'function',
+  authenticatorConfig: FunctionAuthenticatorConfiguration
+): FunctionAuthenticator
 
 export function getAuthenticatorByType(
   authenticatorType: 'plainText',
@@ -56,6 +65,12 @@ export function getAuthenticatorByType(
       )
     }
 
+    case 'function': {
+      return new FunctionAuthenticator(
+        authenticatorConfig as FunctionAuthenticatorConfiguration
+      )
+    }
+
     case 'plainText': {
       return new PlainTextAuthenticator(
         authenticatorConfig as PlainTextAuthenticatorConfiguration
@@ -81,6 +96,11 @@ export {
   type ADWebAuthAuthenticatorConfiguration,
   ADWebAuthAuthenticator
 } from './authenticators/adWebAuthAuthenticator.js'
+
+export {
+  type FunctionAuthenticatorConfiguration,
+  FunctionAuthenticator
+} from './authenticators/functionAuthenticator.js'
 
 export {
   type PlainTextAuthenticatorConfiguration,
