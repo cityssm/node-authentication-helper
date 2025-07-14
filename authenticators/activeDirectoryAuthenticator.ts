@@ -9,6 +9,8 @@ export interface ActiveDirectoryAuthenticatorConfiguration {
 
   bindUserDN: string
   bindUserPassword: string
+
+  cacheUserBindDNs?: boolean
 }
 
 export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
@@ -22,7 +24,9 @@ export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
       {
         baseDN: config.baseDN,
         bindUserDN: config.bindUserDN,
-        bindUserPassword: config.bindUserPassword
+        bindUserPassword: config.bindUserPassword,
+
+        cacheUserBindDNs: config.cacheUserBindDNs ?? false
       }
     )
   }

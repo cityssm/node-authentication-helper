@@ -4,6 +4,7 @@ export interface ActiveDirectoryAuthenticatorConfiguration {
     baseDN: string;
     bindUserDN: string;
     bindUserPassword: string;
+    cacheUserBindDNs?: boolean;
 }
 export declare class ActiveDirectoryAuthenticator implements BaseAuthenticator {
     #private;

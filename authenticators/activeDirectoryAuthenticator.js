@@ -7,7 +7,8 @@ export class ActiveDirectoryAuthenticator {
         }, {
             baseDN: config.baseDN,
             bindUserDN: config.bindUserDN,
-            bindUserPassword: config.bindUserPassword
+            bindUserPassword: config.bindUserPassword,
+            cacheUserBindDNs: config.cacheUserBindDNs ?? false
         });
     }
     async authenticate(userName, password) {
