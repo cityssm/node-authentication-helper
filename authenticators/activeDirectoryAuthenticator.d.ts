@@ -1,11 +1,6 @@
+import { type ActiveDirectoryAuthenticateConfig, type LdapClientOptions } from '@cityssm/activedirectory-authenticate';
 import type { BaseAuthenticator } from './_baseAuthenticator.js';
-export interface ActiveDirectoryAuthenticatorConfiguration {
-    url: string;
-    baseDN: string;
-    bindUserDN: string;
-    bindUserPassword: string;
-    cacheUserBindDNs?: boolean;
-}
+export type ActiveDirectoryAuthenticatorConfiguration = ActiveDirectoryAuthenticateConfig & LdapClientOptions;
 export declare class ActiveDirectoryAuthenticator implements BaseAuthenticator {
     #private;
     constructor(config: ActiveDirectoryAuthenticatorConfiguration);

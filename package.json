@@ -32,14 +32,18 @@
   },
   "scripts": {
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
-    "test": "node --test"
+    "test": "node --test",
+    "test:activeDirectory": "node --test test/activeDirectory.test.js",
+    "test:adWebAuth": "node --test test/adWebAuth.test.js",
+    "test:function": "node --test test/function.test.js",
+    "test:plainText": "node --test test/plainText.test.js"
   },
   "dependencies": {
-    "@cityssm/activedirectory-authenticate": "^1.0.0",
-    "@cityssm/ad-web-auth-connector": "^1.1.1"
+    "@cityssm/activedirectory-authenticate": "^1.1.0",
+    "@cityssm/ad-web-auth-connector": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.0.14",
     "eslint-config-cityssm": "^26.0.0",
     "prettier-config-cityssm": "^1.0.0"
   },

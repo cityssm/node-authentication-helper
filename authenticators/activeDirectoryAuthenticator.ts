@@ -1,33 +1,36 @@
-import ActiveDirectoryAuthenticate from '@cityssm/activedirectory-authenticate'
+import ActiveDirectoryAuthenticate, {
+  type ActiveDirectoryAuthenticateConfig,
+  type LdapClientOptions
+} from '@cityssm/activedirectory-authenticate'
 
 import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
-export interface ActiveDirectoryAuthenticatorConfiguration {
-  url: string
-
-  baseDN: string
-
-  bindUserDN: string
-  bindUserPassword: string
-
-  cacheUserBindDNs?: boolean
-}
+export type ActiveDirectoryAuthenticatorConfiguration =
+  ActiveDirectoryAuthenticateConfig & LdapClientOptions
 
 export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
   readonly #activeDirectoryAuthenticator: ActiveDirectoryAuthenticate
 
   constructor(config: ActiveDirectoryAuthenticatorConfiguration) {
-    this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(
-      {
-        url: config.url
-      },
+    const ldapClientOptions: Partial<LdapClientOptions> = {}
+
+    const activeDirectoryAuthenticateOptions: ActiveDirectoryAuthenticateConfig =
       {
         baseDN: config.baseDN,
         bindUserDN: config.bindUserDN,
         bindUserPassword: config.bindUserPassword,
-
-        cacheUserBindDNs: config.cacheUserBindDNs ?? false
+        cacheUserBindDNs: config.cacheUserBindDNs ?? true
       }
+
+    for (const key in config) {
+      if (!(key in activeDirectoryAuthenticateOptions)) {
+        ldapClientOptions[key] = config[key]
+      }
+    }
+
+    this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(
+      ldapClientOptions as LdapClientOptions,
+      activeDirectoryAuthenticateOptions
     )
   }
 
