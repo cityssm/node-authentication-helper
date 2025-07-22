@@ -39,12 +39,12 @@
     "test:plainText": "node --test test/plainText.test.js"
   },
   "dependencies": {
-    "@cityssm/activedirectory-authenticate": "^1.1.0",
+    "@cityssm/activedirectory-authenticate": "^1.1.1",
     "@cityssm/ad-web-auth-connector": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.14",
-    "eslint-config-cityssm": "^26.0.0",
+    "@types/node": "^24.1.0",
+    "eslint-config-cityssm": "^27.0.0",
     "prettier-config-cityssm": "^1.0.0"
   },
   "engines": {
