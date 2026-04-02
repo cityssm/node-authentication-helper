@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "author": "The Corporation of the City of Sault Ste. Marie",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": "./index.js",
@@ -30,6 +31,10 @@
     "./plainTextAuthenticator": "./authenticators/plainTextAuthenticator.js",
     "./plainTextAuthenticator.js": "./authenticators/plainTextAuthenticator.js"
   },
+  "files": [
+    "authenticators/*",
+    "index.*"
+  ],
   "scripts": {
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
     "test": "node --test",
@@ -43,9 +48,9 @@
     "@cityssm/ad-web-auth-connector": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "^25.3.0",
-    "eslint-config-cityssm": "^38.2.2",
-    "prettier-config-cityssm": "^2.1.1"
+    "@types/node": "^25.5.0",
+    "eslint-config-cityssm": "^39.0.0",
+    "prettier-config-cityssm": "^2.1.2"
   },
   "engines": {
     "node": ">=18.0.0"

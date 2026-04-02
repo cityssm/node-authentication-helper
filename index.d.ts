@@ -14,7 +14,7 @@ export type AuthenticatorType = keyof typeof Authenticators;
  * @param authenticatorType - The authenticator to create ('activeDirectory' | 'adWebAuth' | 'function | 'plainText')
  * @param authenticatorConfig - The configuration for the authenticator
  * @returns An Authenticator instance based on the specified type
- * @throws Error if the authenticator type is unknown
+ * @throws {Error} If the authenticator type is unknown
  */
 export declare function instantiateAuthenticatorByType<T extends keyof typeof Authenticators>(authenticatorType: T, authenticatorConfig: ConstructorParameters<(typeof Authenticators)[T]>[0]): InstanceType<(typeof Authenticators)[T]>;
 export { BaseAuthenticator } from './authenticators/_baseAuthenticator.js';
