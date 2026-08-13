@@ -12,8 +12,8 @@ export class ADWebAuthAuthenticator implements BaseAuthenticator {
     this.#adWebAuth = new AdWebAuthConnector(config)
   }
 
-  async authenticate(userName: string, password: string): Promise<boolean> {
-    return await this.#adWebAuth.authenticate(userName, password)
+  async authenticate(username: string, password: string): Promise<boolean> {
+    return await this.#adWebAuth.authenticate(username, password)
   }
 }
 

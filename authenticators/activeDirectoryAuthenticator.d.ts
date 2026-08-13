@@ -4,5 +4,5 @@ export type ActiveDirectoryAuthenticatorConfiguration = ActiveDirectoryAuthentic
 export declare class ActiveDirectoryAuthenticator implements BaseAuthenticator {
     #private;
     constructor(config: ActiveDirectoryAuthenticatorConfiguration);
-    authenticate(userName: string, password: string): Promise<boolean>;
+    authenticate(username: string, password: string): Promise<boolean>;
 }

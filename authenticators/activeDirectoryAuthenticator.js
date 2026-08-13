@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection */
 import ActiveDirectoryAuthenticate from '@cityssm/activedirectory-authenticate';
 export class ActiveDirectoryAuthenticator {
     #activeDirectoryAuthenticator;
@@ -14,10 +15,12 @@ export class ActiveDirectoryAuthenticator {
                 ldapClientOptions[key] = config[key];
             }
         }
-        this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(ldapClientOptions, activeDirectoryAuthenticateOptions);
+        this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        ldapClientOptions, activeDirectoryAuthenticateOptions);
     }
-    async authenticate(userName, password) {
-        const result = await this.#activeDirectoryAuthenticator.authenticate(userName, password);
+    async authenticate(username, password) {
+        const result = await this.#activeDirectoryAuthenticator.authenticate(username, password);
         return result.success;
     }
 }

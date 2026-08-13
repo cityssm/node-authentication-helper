@@ -15,5 +15,5 @@ export declare class PlainTextAuthenticator implements BaseAuthenticator {
      * @param config.alternativeAuthenticator - An optional Authenticator to use when the user name is not found in the configuration.
      */
     constructor(config: PlainTextAuthenticatorConfiguration);
-    authenticate(userName: string, password: string): Promise<boolean>;
+    authenticate(username: string, password: string): Promise<boolean>;
 }

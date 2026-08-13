@@ -2,14 +2,14 @@ import assert from 'node:assert';
 import { describe, it } from 'node:test';
 import { FunctionAuthenticator } from '../authenticators/functionAuthenticator.js';
 import { instantiateAuthenticatorByType } from '../index.js';
-const asyncAuthenticateFunction = async (userName, password) => 
+const asyncAuthenticateFunction = async (username, password) => 
 // eslint-disable-next-line promise/avoid-new
 await new Promise((resolve) => {
     setTimeout(() => {
-        resolve(userName === 'testUser' && password === 'testPassword');
+        resolve(username === 'testUser' && password === 'testPassword');
     }, 100);
 });
-const authenticateFunction = (userName, password) => userName === 'testUser' && password === 'testPassword';
+const authenticateFunction = (username, password) => username === 'testUser' && password === 'testPassword';
 await describe('FunctionAuthenticator', async () => {
     await describe('With an async authenticate function', async () => {
         const authenticator = instantiateAuthenticatorByType('function', {

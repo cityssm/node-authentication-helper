@@ -1,5 +1,3 @@
-// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
-/* eslint-disable security/detect-object-injection */
 /**
  * This should only be used when testing, say, inside of a GitHub Action.
  * Never use this in production!!!
@@ -16,12 +14,12 @@ export class PlainTextAuthenticator {
         this.#users = config.users;
         this.#alternativeAuthenticator = config.alternativeAuthenticator;
     }
-    async authenticate(userName, password) {
-        if (Object.hasOwn(this.#users, userName)) {
-            return this.#users[userName] === password;
+    async authenticate(username, password) {
+        if (Object.hasOwn(this.#users, username)) {
+            return this.#users[username] === password;
         }
         else if (this.#alternativeAuthenticator !== undefined) {
-            return await this.#alternativeAuthenticator.authenticate(userName, password);
+            return await this.#alternativeAuthenticator.authenticate(username, password);
         }
         return false;
     }

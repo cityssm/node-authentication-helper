@@ -25,7 +25,7 @@ export function instantiateAuthenticatorByType<
   authenticatorType: T,
   authenticatorConfig: ConstructorParameters<(typeof Authenticators)[T]>[0]
 ): InstanceType<(typeof Authenticators)[T]> {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, security/detect-object-injection
   const Authenticator = Authenticators[authenticatorType] as unknown as
     | (new (
         config: ConstructorParameters<(typeof Authenticators)[T]>[0]

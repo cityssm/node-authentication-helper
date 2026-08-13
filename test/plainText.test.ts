@@ -9,8 +9,8 @@ import {
 
 import {
   activeDirectoryPassword,
-  activeDirectoryUserName,
-  activeDirectoryUserNameInvalid,
+  activeDirectoryUsername,
+  activeDirectoryUsernameInvalid,
   adWebAuthConfig,
   plainTextUsers
 } from './config.js'
@@ -43,7 +43,7 @@ await describe('PlainTextAuthenticator', async () => {
     await it('Returns "true" for valid alternative credentials', async () => {
       assert.ok(
         await authenticator.authenticate(
-          activeDirectoryUserName,
+          activeDirectoryUsername,
           activeDirectoryPassword
         )
       )
@@ -51,7 +51,7 @@ await describe('PlainTextAuthenticator', async () => {
 
     await it('Returns "false" for invalid alternative credentials', async () => {
       assert.ok(
-        !(await authenticator.authenticate(activeDirectoryUserNameInvalid, 'x'))
+        !(await authenticator.authenticate(activeDirectoryUsernameInvalid, 'x'))
       )
     })
   })

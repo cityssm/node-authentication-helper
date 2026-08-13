@@ -6,8 +6,8 @@ import { instantiateAuthenticatorByType } from '../index.js'
 import {
   activeDirectoryConfig,
   activeDirectoryPassword,
-  activeDirectoryUserName,
-  activeDirectoryUserNameInvalid
+  activeDirectoryUsername,
+  activeDirectoryUsernameInvalid
 } from './config.js'
 
 await describe('ActiveDirectoryAuthenticator', async () => {
@@ -16,7 +16,7 @@ await describe('ActiveDirectoryAuthenticator', async () => {
   await it('Returns "true" for valid credentials', async () => {
     assert.ok(
       await authenticator.authenticate(
-        activeDirectoryUserName,
+        activeDirectoryUsername,
         activeDirectoryPassword
       )
     )
@@ -24,7 +24,7 @@ await describe('ActiveDirectoryAuthenticator', async () => {
 
   await it('Returns "false" for invalid credentials', async () => {
     assert.ok(
-      !(await authenticator.authenticate(activeDirectoryUserNameInvalid, 'x'))
+      !(await authenticator.authenticate(activeDirectoryUsernameInvalid, 'x'))
     )
   })
 })

@@ -1,3 +1,5 @@
+/* eslint-disable security/detect-object-injection */
+
 import ActiveDirectoryAuthenticate, {
   type ActiveDirectoryAuthenticateConfig,
   type LdapClientOptions
@@ -29,14 +31,15 @@ export class ActiveDirectoryAuthenticator implements BaseAuthenticator {
     }
 
     this.#activeDirectoryAuthenticator = new ActiveDirectoryAuthenticate(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
       ldapClientOptions as LdapClientOptions,
       activeDirectoryAuthenticateOptions
     )
   }
 
-  async authenticate(userName: string, password: string): Promise<boolean> {
+  async authenticate(username: string, password: string): Promise<boolean> {
     const result = await this.#activeDirectoryAuthenticator.authenticate(
-      userName,
+      username,
       password
     )
 

@@ -1,6 +1,3 @@
-// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
-/* eslint-disable security/detect-object-injection */
-
 import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
 export interface PlainTextAuthenticatorConfiguration {
@@ -26,12 +23,12 @@ export class PlainTextAuthenticator implements BaseAuthenticator {
     this.#alternativeAuthenticator = config.alternativeAuthenticator
   }
 
-  async authenticate(userName: string, password: string): Promise<boolean> {
-    if (Object.hasOwn(this.#users, userName)) {
-      return this.#users[userName] === password
+  async authenticate(username: string, password: string): Promise<boolean> {
+    if (Object.hasOwn(this.#users, username)) {
+      return this.#users[username] === password
     } else if (this.#alternativeAuthenticator !== undefined) {
       return await this.#alternativeAuthenticator.authenticate(
-        userName,
+        username,
         password
       )
     }

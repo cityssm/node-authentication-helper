@@ -5,18 +5,18 @@ import { FunctionAuthenticator } from '../authenticators/functionAuthenticator.j
 import { instantiateAuthenticatorByType } from '../index.js'
 
 const asyncAuthenticateFunction = async (
-  userName: string,
+  username: string,
   password: string
 ): Promise<boolean> =>
   // eslint-disable-next-line promise/avoid-new
   await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(userName === 'testUser' && password === 'testPassword')
+      resolve(username === 'testUser' && password === 'testPassword')
     }, 100)
   })
 
-const authenticateFunction = (userName: string, password: string): boolean =>
-  userName === 'testUser' && password === 'testPassword'
+const authenticateFunction = (username: string, password: string): boolean =>
+  username === 'testUser' && password === 'testPassword'
 
 await describe('FunctionAuthenticator', async () => {
   await describe('With an async authenticate function', async () => {

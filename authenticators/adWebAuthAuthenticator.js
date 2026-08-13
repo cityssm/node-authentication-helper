@@ -4,7 +4,7 @@ export class ADWebAuthAuthenticator {
     constructor(config) {
         this.#adWebAuth = new AdWebAuthConnector(config);
     }
-    async authenticate(userName, password) {
-        return await this.#adWebAuth.authenticate(userName, password);
+    async authenticate(username, password) {
+        return await this.#adWebAuth.authenticate(username, password);
     }
 }

@@ -2,14 +2,14 @@ import type { BaseAuthenticator } from './_baseAuthenticator.js'
 
 export interface FunctionAuthenticatorConfiguration {
   authenticate: (
-    userName: string,
+    username: string,
     password: string
   ) => boolean | Promise<boolean>
 }
 
 export class FunctionAuthenticator implements BaseAuthenticator {
   readonly #authenticateFunction: (
-    userName: string,
+    username: string,
     password: string
   ) => boolean | Promise<boolean>
 
@@ -17,7 +17,7 @@ export class FunctionAuthenticator implements BaseAuthenticator {
     this.#authenticateFunction = config.authenticate
   }
 
-  async authenticate(userName: string, password: string): Promise<boolean> {
-    return await this.#authenticateFunction(userName, password)
+  async authenticate(username: string, password: string): Promise<boolean> {
+    return await this.#authenticateFunction(username, password)
   }
 }
