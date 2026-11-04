@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/authentication-helper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Handles the authentication requests for web applications.",
   "keywords": [
     "authentication",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@cityssm/activedirectory-authenticate": "^3.0.0",
-    "@cityssm/ad-web-auth-connector": "^2.0.0"
+    "@cityssm/ad-web-auth-connector": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
